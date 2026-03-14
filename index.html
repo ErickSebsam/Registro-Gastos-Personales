@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="filtros-btn">
+            <div class="general">
+                <div class="titulo">
+                    <h1>Registro de Gastos Personales</h1>
+                </div>
+                <div class="botones">
+                    <div class="categoría-filtro">
+                        <select id="categoria-select">
+                            <option value="todo">Todos</option>
+                            <option value="alimentacion">Alimentación</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="entretenimiento">Entretenimiento</option>
+                        </select>
+                    </div>
+                    <div class="descripcion-busqueda">
+                        <button id="buscar-descripcion">Buscar</button>
+                        <input type="text" id="busqueda-input" placeholder="Descripción a buscar">
+                    </div>
+                    <div class="orden-monto">
+                        <select id="orden-select">
+                            <option value="monto">Monto</option>
+                            <option value="monto-mayor">Monto mayor</option>
+                            <option value="monto-menor">Monto menor</option>
+                        </select>
+                    </div>
+                    <div class="agregar-gasto">
+                        <button id="agregar-gasto">Agregar Gasto</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tabla-gastos">
+            <div class="tabla-header">
+                <div class="col">Categoría</div>
+                <div class="col">Descripción</div>
+                <div class="col">Monto</div>
+                <div class="col">Fecha</div>
+                <div class="col">Acciones</div>
+            </div>
+
+            <div id="lista-gastos">
+
+            </div>
+        </div>
+    </div>
+    <div class="formulario" id="formulario-gasto">
+        <h2>Registrar Gasto</h2>
+
+        <div class="campo">
+            <label>Categoría</label>
+            <select id="categoria">
+                <option value="">Seleccione</option>
+                <option value="alimentacion">Alimentación</option>
+                <option value="transporte">Transporte</option>
+                <option value="entretenimiento">Entretenimiento</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Descripción</label>
+            <input type="text" id="descripcion">
+        </div>
+
+        <div class="campo">
+            <label>Monto</label>
+            <input type="number" id="monto">
+        </div>
+        <div class="botones-form">
+            <button id="guardar-gasto">Guardar</button>
+            <button id="cancelar-gasto">Cancelar</button>
+        </div>
+
+        <div id="mensaje-error"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

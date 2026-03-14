@@ -1,0 +1,213 @@
+1- registro gasto
+- Descripción: permitir al usuario registrar los datos de cada gasto para su almacenamiento
+- precondición:
+el usuario esté dentro de la interfaz de registro de gasto
+- entrada: se recibe: categoría (select con opciones de alimentación, transporte, entretenimiento), descripción (texto), monto (numérico mayor a cero) y fecha(date) automática del día actual.
+Botones de guardar y cancelar.
+-procesamiento:
+1- El sistema verifica si el usuario presionó guardar o cancelar
+2- si es “cancelar” se resetea el formulario y se cierra sin guardar nada.
+3-validación de categoría correctamente seleccionada.
+4- validación de descripción correctamente lleno
+5-validación de monto correctamente lleno y mayor a cero
+6- fecha actual guardada automáticamente
+7-se guardan los datos en el localstorage
+8- se actualiza la tabla visual de gastos
+
+- salida: 
+Mensaje "Registro exitoso"
+El formulario se cierra
+La tabla de gastos se actualiza mostrando el nuevo registro
+
+-manejo de errores:
+Tras el error, el sistema mantiene los datos para que el usuario los corrija
+1- si categoría no está seleccionada, mostrar "seleccione una categoría"
+2- si la descripción no está llena, mostrar "ingrese una descripción"
+3- si el monto no está lleno, mostrar "ingrese el monto"
+4-  si el monto es un valor menor o igual a cero, mostrar "ingrese un monto mayor a cero"
+- postcondición: el gasto fue guardado en el localstorage y la tabla visual de gastos muestra el gasto
+
+
+
+
+
+
+
+
+
+
+2 - Filtrar gastos por categoría
+-	Descripción
+Permite al usuario acceder a los gastos dependiendo de la categoría seleccionada
+-	Precondición:
+El usuario debe estar en la pantalla principal
+-	Entrada:
+Categoría seleccionada por el usuario (todos, alimentación, transporte, entretenimiento)
+-	Procesamiento:
+1-	El sistema recibe la categoría seleccionada por el usuario.
+2-	El sistema obtiene los gastos registrados en el localStorage.
+3-	El sistema verifica si la categoría seleccionada es "todos".
+4-	Si la categoría seleccionada es "todos", el sistema muestra todos los gastos registrados.
+5-	Si la categoría seleccionada es diferente de "todos", el sistema recorre cada gasto registrado verificando su categoría.
+6-	El sistema filtra los gastos que cumplen con la categoría seleccionada.
+7-	El sistema actualiza la tabla visual de gastos mostrando los resultados correspondientes.
+-	Salida:
+La tabla muestra los gastos correspondientes a la categoría seleccionada por el usuario o todos los gastos si se selecciona la opción "todos".
+-	Manejo de errores
+Si la categoría seleccionada es diferente de "todos" y no existen gastos con esa categoría, el sistema muestra el mensaje: "No hay gastos registrados con esta categoría" y presenta la tabla vacía.
+-	Postcondición:
+El filtro de categoría mantiene seleccionada la categoría elegida por el usuario.
+Se muestra la tabla de gastos mostrando únicamente los gastos con la categoría seleccionada por el usuario o todos los gastos si se selecciona "todos"
+
+
+
+
+
+
+
+
+
+
+
+
+3-  Buscar por descripción
+Descripción: 
+El usuario podrá acceder a los gastos que cuenten con las mismas palabras ingresadas en la descripción.
+Precondición
+El usuario debe estar en la pantalla principal
+Entrada 
+la descripción ingresada por el usuario para hacer el filtro
+procesamiento
+1-	EL usuario presiona el botón “buscar”
+2-	El sistema obtiene la descripción del usuario para hacer el filtro
+3-	El sistema obtiene los gastos registrados en localStorage.
+4-	El sistema verifica si la descripción está vacía 
+5-	Si la descripción está vacía el sistema muestra todos los gastos registrados
+6-	Si la descripción no está vacía el sistema recorre cada gasto registrado verificando si la descripción del gasto coincide con la descripción registrada por el usuario
+7-	El sistema filtra los gastos que cumplen con la descripción registrada
+8-	El sistema actualiza la tabla visual de gastos mostrando únicamente los gastos con la descripción en común.
+9-	El sistema mantiene la barra de búsqueda por descripción ingresada por el usuario para permitir su edición.
+Salida
+La tabla muestra los gastos que coinciden con la descripción de búsqueda o todos los gastos si la descripción ingresada está vacía. 
+Manejo de errores
+Si la descripción no coincide con ningún gasto registrado se muestra el mensaje “No hay gastos registrados con esta descripción” y presenta la tabla vacía.
+Postcondición 
+La barra de búsqueda mantiene la descripción ingresada por el usuario para permitir su edición.
+Se muestra la tabla de gastos mostrando únicamente los gastos con la descripción en común a la descripción de búsqueda digitada por el usuario, o todos los gastos si la descripción está vacía.
+
+
+
+
+
+
+
+
+
+
+
+4- Listar por monto
+Descripción
+Permite al usuario acceder a los gastos listados de forma ascendente o descendente dependiendo del orden de monto seleccionado
+Precondición
+El usuario debe estar en la pantalla principal
+Entrada
+Orden de monto seleccionado por el usuario (monto, monto-mayor, monto-menor)
+Procesamiento
+1-	El usuario selecciona el orden de monto (monto, monto-mayor, monto-menor)
+2-	El sistema obtiene los gastos registrados en el localstorage
+3-	El sistema verifica el orden de monto seleccionado
+4-	Si el orden de monto seleccionado es “monto” el sistema muestra los gastos en su orden original.
+5-	Si el orden seleccionado es "monto-mayor", el sistema organiza los gastos de mayor a menor según el monto.
+6-	Si el orden seleccionado es "monto-menor", el sistema organiza los gastos de menor a mayor según el monto.
+7-	El sistema actualiza la tabla de gastos organizados dependiendo del orden de monto seleccionado
+Salida 
+La tabla muestra los gastos ordenados según el orden de monto seleccionado.
+Manejo de errores
+si no hay ningún gasto registrado se muestra un mensaje de “No hay gastos registrados”
+postcondición
+El filtro de monto mantiene seleccionada la opción elegida por el usuario.
+La tabla muestra los gastos listados dependiendo del orden de monto seleccionado
+
+
+
+
+
+
+
+5- Editar gasto
+Descripción 
+Permite al usuario modificar los datos de un gasto previamente registrado. EL sistema abre un formulario de edición cargando automáticamente los datos existentes del gasto seleccionado para que puedan ser modificados.
+Precondición
+El usuario se encuentra en la pantalla principal donde se visualiza la tabla de gastos y existe al menos un gasto registrado
+Entrada
+Gasto seleccionado por el usuario desde la tabla de gastos
+Datos modificados por el usuario en el formulario: categoría (alimentación, transporte, entretenimiento), descripción, monto.
+Procesamiento
+1.	El usuario presiona el botón “editar” en uno de los gastos registrados en la tabla
+2.	El sistema identifica el gasto seleccionado
+3.	El sistema obtiene los gastos almacenados en el localstorage 
+4.	El sistema abre el formulario de edición en una sección dedicada
+5.	El sistema carga automáticamente en el formulario los datos actuales del gasto seleccionado (categoría, descripción, monto)
+6.	El usuario modifica los datos que desea cambiar
+7.	El usuario presiona el botón “guardar” o “cancelar”
+8.	Si el usuario presiona “cancelar”, el sistema cierra el formulario sin realizar cambios
+9.	Si el usuario presiona “guardar”, el sistema valida los datos ingresados:
+-	verifica que la categoría esté seleccionada
+-	verifica que la descripción no esté vacía
+-	verifica que el monto esté ingresado
+-	verifica que el monto sea mayor a cero
+10.	si los datos son válidos, el sistema actualiza la información de gasto correspondiente 
+11.	el sistema guarda nuevamente los datos actualizados en localstorage
+12.	el sistema actualiza la tabla de gastos mostrando los cambios realizados
+salida
+-	mensaje en pantalla “Gasto actualizado correctamente”
+-	el formulario de edición se cierra
+-	la tabla de gastos muestra el registro con los datos actualizados
+manejo de errores
+si ocurre un error, el sistema mantiene los datos ingresados en el formulario para que el usuario pueda corregirlos
+1-	Si la categoría no está seleccionada, mostrar el mensaje: •  “Seleccione una categoría”
+2-	Si la descripción está vacía, mostrar el mensaje: “Ingrese una descripción”
+3-	Si el monto no está ingresado, mostrar el mensaje: “Ingrese el monto”
+4-	Si el monto es menor o igual a cero, mostrar el mensaje: “Ingrese un monto mayor a cero”
+
+Postcondición
+El gasto queda actualizado en el localstorage
+La tabla de gastos muestra el registro con los datos modificados 
+El sistema vuelve a mostrar la lista de gastos actualizada
+
+
+
+
+
+
+
+
+
+
+
+6- Eliminar gasto
+Descripción
+Permite al usuario eliminar un gasto previamente registrado del sistema. El sistema solicita una confirmación antes de eliminar el gasto para evitar eliminaciones accidentales
+Precondición
+El usuario se encuentra en la pantalla principal donde se visualiza la tabla de gastos y existe al menos un gasto registrado
+Entrada 
+Gasto seleccionado por el usuario desde la tabla de gastos
+Procesamiento
+1-	El usuario presiona el botón “eliminar” en uno de los gastos registrados en la tabla
+2-	El sistema identifica el gasto seleccionado
+3-	El sistema muestra un mensaje de confirmación preguntando al usuario si desea eliminar el gasto seleccionado
+4-	El usuario selecciona la opción “confirmar” o “cancelar”
+5-	Si el usuario selecciona “cancelar”, el sistema cierra el mensaje de confirmación sin realizar cambios
+6-	Si el usuario selecciona “confirmar”, el sistema obtiene los gastos almacenados en localstorage
+7-	El sistema elimina el gasto seleccionado de la lista de gastos registrados
+8-	El sistema guarda nuevamente la lista actualizada de gastos en el localstorage
+9-	El sistema actualiza la tabla de gastos mostrando los registros restantes
+Salida
+Mensaje en pantalla “Gasto eliminado correctamente”
+La tabla de gastos se actualiza mostrando los gastos restantes
+Manejo de errores
+Si ocurre un error durante la eliminación, el sistema muestra el mensaje “no se pudo eliminar el gasto, intente nuevamente”
+Si después de eliminar el gasto no quedan registros, el sistema muestra el mensaje: “No hay gastos registrados” y presenta la tabla vacía
+Postcondición
+El gasto seleccionado queda eliminado de localstorage
+La tabla de gastos muestra la lista actualizada de gastos registrados
